@@ -22,7 +22,7 @@ let package = Package(
 
 ## Version
 
-0.1.0 supports Swift 3.
+0.1.1 supports Swift 3.
 
 ## Xcode Support
 
