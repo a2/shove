@@ -55,7 +55,12 @@ public class ShoveClient {
         let task = session.dataTask(with: request) { data, response, error in
             if let data = data {
                 let httpResponse = response as! HTTPURLResponse
-                let apnsIdString = httpResponse.allHeaderFields["apns-id"] as! String
+                #if os(Linux)
+                    let apnsIdString = httpResponse.allHeaderFields["apns-id"]!
+                #else
+                    let apnsIdString = httpResponse.allHeaderFields["apns-id"] as! String
+                #endif
+
                 let apnsId = UUID(uuidString: apnsIdString)!
                 let status = ServerStatus(rawValue: httpResponse.statusCode)!
 
